@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semi Restful TV Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>All Shows</h1>
+    <table class="table table-striped table-bordered table-hover">
+        <tr class="thead-dark">
+            <th>ID</th>
+            <th>Title</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for show in shows %}
+        <tr scope="row">
+            <td>{{ show.id }}</td>
+            <td>{{ show.title }}</td>
+            <td>{{ show.network }}</td>
+            <td>{{ show.release_date }}</td>
+            <td>
+                <ul id="actions">
+                    <li><a href="/shows/{{ show.id }}/">Show</a></li>
+                    <li>|</li>
+                    <li><a href="/shows/{{ show.id }}/edit/">Edit</a></li>
+                    <li>|</li>
+                    <li><a href="/shows/{{ show.id }}/destroy/">Delete</a></li>
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="/shows/new/">Add a New Show</a></p>
+</body>
+</html>
